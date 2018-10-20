@@ -1,0 +1,12 @@
+{
+  "name": "NasaSpaceApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "Dani",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+  }
+}
