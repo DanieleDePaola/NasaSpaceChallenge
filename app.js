@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-//var client = require("./routes/client.js");
+var client = require("./routes/client.js");
 //var fireman = require("./routes/fireman.js");
 var app = express();
 
@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 //app.use('/api/v1', fireman)0;
-//app.use('/checkout', client);
+app.use('/api', client);
 
 let port = process.env.PORT;
 if (port == null || port == "") {

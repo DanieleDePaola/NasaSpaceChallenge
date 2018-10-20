@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Report a fire</title>
+  <meta name="description" content="Signal and check fires int ">
+  <meta name="author" content="SitePoint">
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+     integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+     crossorigin=""></script>
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+
+  <form id="reportForm" action="api/signal" method="POST">
+      <div class = "description">Description: </div>
+      <input type = "text" name="descr"><br>
+      <div class = "danger">Danger: </div>
+      <select id="dang" name="danger">
+        <option value="Low">S</option>
+        <option value="Medium">M</option>
+        <option value="High">L</option>
+      </select><br>
+      <div class = "photo">Take a picture: </div>
+      <input type="file" name="photo" accept="image/*;capture=camera">
+      <input type = "submit" value="Submit">
+  </form>
+
+
+
+  <script src="js\jquery-3.3.1.min.js"></script>
+  <script src="js\main.js"></script>
+
+</body>
+</html>

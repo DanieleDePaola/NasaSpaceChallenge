@@ -8,8 +8,13 @@ function showPosition(position) {
     var pos = position;
     var d = new Date();
     var t = d.getTime();
-    $.post( "http://localhost:1377/"+t+"/"+pos.coords.latitude+"/"+ pos.coords.longitude+"/"+ $( "#dang option:selected" ).text());
-
+    $.ajax({
+      type: "POST",
+      url: "api/signal",
+      data: {time:t,description:"ciao", latitude:89, longitude:89},
+      success: success,
+      dataType: dataType
+    });
 }
 function getLocation() {
   if (navigator.geolocation) {
