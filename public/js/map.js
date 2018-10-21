@@ -51,7 +51,7 @@ $( document ).ready(function() {
 });
 
 function addReports (item, index){
-
+  console.log(item)
   var marker = L.marker([ parseInt(item['latitude']), parseInt(item['longitude'])], {icon: reportIcon}).addTo(mymap);
 
 

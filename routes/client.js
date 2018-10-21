@@ -1,6 +1,6 @@
 var express = require('express')
 var multer = require('multer');
-var http = require("http");
+var request = require("request");
 var bodyParser = require('body-parser')
 
 //MULTER CONFIG: to get file photos to temp server storage
@@ -63,37 +63,42 @@ router.get('/signal', function (req, res, next) {
     res.json(Signals)
 })
 router.post('/upload',multer(multerConfig).single('photo'),function(req,res){
+  var data = {
+    "inputs": [
+      {
+        "data": {
+          "image": {
+            "url": 'http://nasaspaceapp2018.herokuapp.com/ph/' + req.file.filename
+            //"url": 'http://nasaspaceapp2018.herokuapp.com/ph/fire.png'
+          }
+        }
+      }
+    ]
+  }
   var optionsget = {
                   headers: {
                       'Authorization': 'Key 1a5c1c25b0c840458c03dabfd9ed5fe4 ',
                       'Content-Type': 'application/json'
                   },
-                  host: 'api.clarifai.com',
-                  path: 'v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs',
-                  method: 'POST'
+                  url: 'https://api.clarifai.com/v2/models/aaa03c23b3724a16a56b629203edc62c/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs',
+                  body: JSON.stringify(data)
               };
-      var data = {
-        "inputs": [
-          {
-            "data": {
-              "image": {
-                //"url": 'http://nasaspaceapp2018.herokuapp.com/ph/' + req.file.filename
-                "url": 'http://nasaspaceapp2018.herokuapp.com/ph/fire.png'
-              }
-            }
-          }
-        ]
-      }
-  const rich = http.request(optionsget, (risp) => {
-    console.log(`statusCode: ${risp.statusCode}`)
 
-    risp.on('data', (d) => {
-      console.log(d)
-    })
-  });
-  console.log(JSON.stringify(data))
-  rich.write(JSON.stringify(data));
-  rich.end();
- res.send('Complete!');
+  request.post(optionsget, function(err,httpResponse,body){
+   //console.log(body)
+   var conc = JSON.parse(body)['outputs'][0]['data']['concepts']
+   var bool=false;
+   conc.forEach(function(val){
+     if(val['name'] == 'flame' || val['name'] == 'fire'){
+       bool=true
+       console.log('Find a fire with a ' + val['value']*100 + ' % of accuracy ' )
+     }
+   });
+   if(!bool) {
+     Signals.pop()
+  }
+ })
+
+ res.render('index');
 });
 module.exports = router
