@@ -8,25 +8,31 @@
 
 #reportForm {
   position: absolute;
-  width: 170px;
-  height: 150px;
+  width:210px;
+  height: 100px;
   top: 100px;
   left: 50px;
   background-color: rgba(58, 121, 236, 0.67);
   z-index: 9999;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   padding:20px;
 }
 
 #reportForm1 {
   position: absolute;
-  width: 170px;
-  height: 150px;
-  top: 250px;
+  width: 210px;
+  height: 60px;
+  top: 240px;
   left: 50px;
   background-color: rgba(58, 121, 236, 0.67);
   z-index: 9999;
-  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   padding:20px;
   display: none;
 }

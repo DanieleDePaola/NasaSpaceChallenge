@@ -13,7 +13,7 @@ $( document ).ready(function() {
    reportIcon = L.icon({
       iconUrl: 'ph/warning.png',
       iconSize:     [22, 22], // size of the icon
-      iconAnchor:   [12, 15], // point of the icon which will correspond to marker's location
+      iconAnchor:   [11, 11], // point of the icon which will correspond to marker's location
       popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
   });
   mymap.on('click', function(e){
@@ -47,7 +47,7 @@ $( document ).ready(function() {
     })
   });
 
-
+  setInterval(function(){getReports()}, 20000);
 });
 
 function addReports (item, index){
@@ -62,4 +62,12 @@ function addReports (item, index){
    });
 
 
+}
+
+function getReports(){
+  $.getJSON('api/signal', function(data){
+    $.each(data, function( index, value ) {
+      addReports(value, index);
+    })
+  });
 }
