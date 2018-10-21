@@ -22,7 +22,7 @@
 
 
   <div id="mapid"></div>
-  <form id="reportForm" action="#">
+  <form id="reportForm">
       <div class = "description">Description: </div>
       <input type = "text" name="descr"><br>
       <div class = "danger">Danger: </div>
@@ -31,11 +31,13 @@
         <option value="Medium">M</option>
         <option value="High">L</option>
       </select><br>
-      <div class = "photo">Take a picture: </div>
-      <input type="file" name="photo" accept="image/*;capture=camera">
-      <input type = "submit" value="Submit">
-  </form>
-
+      <button id="sendSign">SEND</button>
+    </form>
+    <form id="reportForm1" action="api/upload" enctype="multipart/form-data" method="POST">
+        <div class = "photo">Take a picture: </div>
+        <input type="file" name="photo" />
+        <input type="submit" value="Submit"/>
+    </form>
 
   <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
   <script src="js\jquery-3.3.1.min.js"></script>

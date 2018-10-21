@@ -1,4 +1,7 @@
 var mymap;
+var lati;
+var longi;
+var reportIcon;
 $( document ).ready(function() {
   mymap = L.map('mapid').setView([45, 10], 5);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGNvbGxpbmkiLCJhIjoiY2puaGw5ZTU0MDJtcjN3bWpsc2UyZWoyZyJ9.rhC2MyJ3u9gHr44__RmPfA', {
@@ -7,6 +10,20 @@ $( document ).ready(function() {
     id: 'mapbox.streets',
     accessToken: 'your.mapbox.access.token'
   }).addTo(mymap);
+   reportIcon = L.icon({
+      iconUrl: 'ph/warning.png',
+      iconSize:     [22, 22], // size of the icon
+      iconAnchor:   [12, 15], // point of the icon which will correspond to marker's location
+      popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+  });
+  mymap.on('click', function(e){
+    var coord = e.latlng;
+    lati = coord.lat;
+    longi = coord.lng;
+    console.log("You clicked the map at latitude: " + lati + " and longitude: " + longi);
+    var marker = L.marker([lati, longi], {icon: reportIcon}).addTo(mymap);
+    marker.bindPopup("<b>Latitude: </b>"+lati+"<br>"+"<b>Longitude: </b>"+longi+"<br>Click subit to report a fire at this coordinates").openPopup();
+  });
 
   var fireIcon = L.icon({
       iconUrl: 'ph/fire.png',
@@ -34,12 +51,7 @@ $( document ).ready(function() {
 });
 
 function addReports (item, index){
-  var reportIcon = L.icon({
-      iconUrl: 'ph/warning.png',
-      iconSize:     [22, 22], // size of the icon
-      iconAnchor:   [12, 15], // point of the icon which will correspond to marker's location
-      popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-  });
+
   var marker = L.marker([ parseInt(item['latitude']), parseInt(item['longitude'])], {icon: reportIcon}).addTo(mymap);
 
 

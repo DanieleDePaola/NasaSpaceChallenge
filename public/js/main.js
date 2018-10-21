@@ -1,21 +1,30 @@
 
-$( "#reportForm" ).submit(function( event ) {
-    getLocation();
+$( "#sendSign" ).click(function( event ) {
+    //getLocation();
+    var d = new Date();
+    var t = d.getTime();
+    $.post("/api/signal", {
+      time:t,
+      latitude:lati,
+      longitude:longi,
+      danger:$( "#dang option:selected" ).text(),
+      description:''
+    });
     event.preventDefault();
+    $('#reportForm1').attr("display","block").fadeIn();
 });
 
 function showPosition(position) {
     var pos = position;
-    var d = new Date();
-    var t = d.getTime();
-    
-    $.post("/api/signal", {
+
+
+  /*  $.post("/api/signal", {
       time:t,
       latitude:pos.coords.latitude,
       longitude:pos.coords.longitude,
       danger:$( "#dang option:selected" ).text(),
       description:''
-    })
+    });*/
 
 }
 function getLocation() {

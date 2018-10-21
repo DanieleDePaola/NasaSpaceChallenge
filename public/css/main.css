@@ -18,6 +18,19 @@
   padding:20px;
 }
 
+#reportForm1 {
+  position: absolute;
+  width: 170px;
+  height: 150px;
+  top: 250px;
+  left: 50px;
+  background-color: rgba(58, 121, 236, 0.67);
+  z-index: 9999;
+  border-radius: 20px;
+  padding:20px;
+  display: none;
+}
+
 #reportForm input{
   border: 1px;
   height: 22px;
