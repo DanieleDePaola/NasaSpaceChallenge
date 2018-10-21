@@ -99,6 +99,7 @@ router.post('/upload',multer(multerConfig).single('photo'),function(req,res){
   }
  })
 
- res.render('index');
+  res.writeHead(301,{Location: 'http://nasaspaceapp2018.herokuapp.com/'});
+  res.end();
 });
 module.exports = router
