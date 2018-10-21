@@ -8,13 +8,15 @@ function showPosition(position) {
     var pos = position;
     var d = new Date();
     var t = d.getTime();
-    $.ajax({
-      type: "POST",
-      url: "api/signal",
-      data: {time:t,description:"ciao", latitude:89, longitude:89},
-      success: success,
-      dataType: dataType
-    });
+    
+    $.post("/api/signal", {
+      time:t,
+      latitude:pos.coords.latitude,
+      longitude:pos.coords.longitude,
+      danger:$( "#dang option:selected" ).text(),
+      description:''
+    })
+
 }
 function getLocation() {
   if (navigator.geolocation) {

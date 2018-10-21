@@ -16,19 +16,10 @@
 
 <body>
 
-  <form id="reportForm" action="api/signal" method="POST">
-      <div class = "description">Description: </div>
-      <input type = "text" name="descr"><br>
-      <div class = "danger">Danger: </div>
-      <select id="dang" name="danger">
-        <option value="Low">S</option>
-        <option value="Medium">M</option>
-        <option value="High">L</option>
-      </select><br>
-      <div class = "photo">Take a picture: </div>
-      <input type="file" name="photo" accept="image/*;capture=camera">
-      <input type = "submit" value="Submit">
-  </form>
+  <form action="api/upload" enctype="multipart/form-data" method="POST"> 
+    <input type="file" name="photo" />
+    <input type="submit" value="Upload Photo"/>
+ </form>
 
 
 
