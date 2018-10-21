@@ -77,13 +77,13 @@ router.post('/upload',multer(multerConfig).single('photo'),function(req,res){
           {
             "data": {
               "image": {
-                "url": 'http://nasaspaceapp2018.herokuapp.com/ph/' + req.file.filename
+                //"url": 'http://nasaspaceapp2018.herokuapp.com/ph/' + req.file.filename
+                "url": 'http://nasaspaceapp2018.herokuapp.com/ph/fire.png'
               }
             }
           }
         ]
       }
-      console.log(JSON.stringify(data))
   const rich = http.request(optionsget, (risp) => {
     console.log(`statusCode: ${risp.statusCode}`)
 
