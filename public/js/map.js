@@ -52,7 +52,7 @@ $( document ).ready(function() {
 
 function addReports (item, index){
   console.log(item)
-  var marker = L.marker([ parseInt(item['latitude']), parseInt(item['longitude'])], {icon: reportIcon}).addTo(mymap);
+  var marker = L.marker([ parseFloat(item['latitude']), parseFloat(item['longitude'])], {icon: reportIcon}).addTo(mymap);
 
 
    $.getJSON("https://api.openweathermap.org/data/2.5/weather?lat="+item['latitude']+"&lon="+item['longitude']+"&appid=d3b28de32a9c8f6be547f85978142d77", function(data){
