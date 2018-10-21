@@ -83,6 +83,7 @@ router.post('/upload',multer(multerConfig).single('photo'),function(req,res){
           }
         ]
       }
+      console.log(JSON.stringify(data))
   const rich = http.request(optionsget, (risp) => {
     console.log(`statusCode: ${risp.statusCode}`)
 

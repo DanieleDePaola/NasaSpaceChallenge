@@ -22,5 +22,5 @@ var server = app.listen(port,function () {
     console.log("app running on port.", server.address().port);
 });
 app.get('/', function (req, res) {
-	res.render('index');
+	res.render('report');
 });
